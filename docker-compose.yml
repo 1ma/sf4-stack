@@ -1,0 +1,16 @@
+version: "3.0"
+services:
+  nginx:
+    image: nginx:1.15-alpine
+    depends_on:
+      - php-fpm
+    ports:
+      - "127.0.0.1:80:80"
+    volumes:
+      - ./public:/var/www/sf4.devel/public
+      - ./config/dev_vhost.conf:/etc/nginx/conf.d/default.conf
+  php-fpm:
+    image: 1maa/php-dev:7.2
+    volumes:
+      - .:/var/www/sf4.devel
+    working_dir: /var/www/sf4.devel
