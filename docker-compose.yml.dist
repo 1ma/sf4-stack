@@ -17,7 +17,6 @@ services:
   mysql:
     image: 1maa/mysql:5.7
     environment:
-      - MYSQL_DATABASE=sf4_devel
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - "127.0.0.1:3305:3306"   # not really needed, but useful for PHPStorm DB integration
@@ -25,6 +24,6 @@ services:
     image: dadarek/wait-for-dependencies
     command: nginx:80 mysql:3306
     depends_on:
-    - nginx
-    - php-fpm
-    - mysql
+      - nginx
+      - php-fpm
+      - mysql

@@ -34,3 +34,12 @@ $ php bin/console doctrine:migrations:migrate
 
 No migrations to execute.
 ```
+
+
+The PHP container also has XDebug enabled in the FPM SAPI and some development tools at `/usr/local/bin`:
+
+```sh
+$ ls /usr/local/bin/
+boris          deptrac.phar   phing          php-parse      phpunit
+composer       jsonlint       php-cs-fixer   phpmetrics     validate-json
+```
