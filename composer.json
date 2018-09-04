@@ -39,6 +39,12 @@
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php56": "*"
     },
+    "scripts-descriptions": {
+        "stack-up": "Bring up the development containers and load the schema and seeds into the database",
+        "stack-down": "Remove development containers and purge their volumes and networks",
+        "stack-start": "Bring up the development containers",
+        "stack-stop": "Stop development containers, preserving volumes and networks"
+    },
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
@@ -49,7 +55,18 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "stack-up": [
+            "@stack-start",
+            "@composer install --ignore-platform-reqs",
+            "docker-compose exec -T php-fpm sh -c \"php bin/console doctrine:migrations:migrate --no-interaction\""
+        ],
+        "stack-down": "docker-compose down -v",
+        "stack-start": [
+            "cp -n docker-compose.yml.dist docker-compose.yml",
+            "docker-compose run --rm starter"
+        ],
+        "stack-stop": "docker-compose stop"
     },
     "conflict": {
         "symfony/symfony": "*"

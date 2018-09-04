@@ -21,3 +21,10 @@ services:
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - "127.0.0.1:3305:3306"   # not really needed, but useful for PHPStorm DB integration
+  starter:
+    image: dadarek/wait-for-dependencies
+    command: nginx:80 mysql:3306
+    depends_on:
+    - nginx
+    - php-fpm
+    - mysql
