@@ -64,7 +64,7 @@
         ],
         "stack-down": "docker-compose down -v",
         "stack-start": [
-            "cp -n docker-compose.yml.dist docker-compose.yml",
+            "cp -n docker-compose.yml docker-compose.override.yml",
             "docker-compose run --rm starter"
         ],
         "stack-stop": "docker-compose stop"
